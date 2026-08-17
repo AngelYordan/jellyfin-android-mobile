@@ -70,6 +70,21 @@
             android:foregroundServiceType="mediaPlayback" />
 
         <service
+            android:name=".bridge.ExternalPlayerTrackingService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <service
+            android:name=".bridge.ExternalPlayerNotificationListenerService"
+            android:exported="true"
+            android:label="@string/external_player_vlc_tracking_service_label"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <service
             android:name="androidx.work.impl.foreground.SystemForegroundService"
             android:foregroundServiceType="dataSync"
             tools:node="merge" />

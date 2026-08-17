@@ -45,6 +45,8 @@
     <string name="media_service_no_items">No items found</string>
     <string name="media_service_auth_expired">Please open the app on your phone to sign in to your Jellyfin server.</string>
     <string name="media_service_invalid_id">Invalid item ID</string>
+    <string name="external_player_tracking_notification_title">Tracking external playback</string>
+    <string name="external_player_vlc_tracking_service_label">VLC playback tracking</string>
 
     <!-- MediaService / Car-related strings -->
     <string name="media_service_car_section_recents">Recently played</string>
@@ -121,6 +123,9 @@
     <string name="network_buffer_extra_large_description">Maximum buffer, intended for slow or satellite connections</string>
 
     <string name="external_player_app">External player app</string>
+    <string name="external_player_vlc_tracking_access_title">VLC playback state access</string>
+    <string name="external_player_vlc_tracking_access_required">Required for accurate VLC pause and position tracking. Tap to enable notification access for Jellyfin.</string>
+    <string name="external_player_vlc_tracking_access_granted">Granted. Jellyfin can read VLC playback state; notification contents are not processed.</string>
     <string name="external_player_mpv">MPV Player</string>
     <string name="external_player_mpv_description">A simple, small and light-weight free (as in freedom) video player. It supports a wide variety of media file formats.</string>
     <string name="external_player_mx_player_free">MX Player Free</string>

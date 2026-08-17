@@ -179,12 +179,14 @@ dependencies {
 
     // Monitoring
     implementation(libs.timber)
+    implementation(libs.slf4j.nop)
 
     // Testing
     testImplementation(libs.junit.api)
     testRuntimeOnly(libs.junit.engine)
     testImplementation(libs.bundles.kotest)
     testImplementation(libs.mockk)
+    testImplementation(libs.coroutines.test)
     androidTestImplementation(libs.bundles.androidx.test)
 
     // Formatting rules for detekt

@@ -25,6 +25,7 @@ import de.Maxr1998.modernpreferences.preferences.choice.SelectionItem
 import org.jellyfin.mobile.R
 import org.jellyfin.mobile.app.AppPreferences
 import org.jellyfin.mobile.app.StorageManager
+import org.jellyfin.mobile.bridge.VlcMediaSessionObserver
 import org.jellyfin.mobile.databinding.FragmentSettingsBinding
 import org.jellyfin.mobile.downloads.DownloadMethod
 import org.jellyfin.mobile.utils.BackPressInterceptor
@@ -62,6 +63,7 @@ class SettingsFragment : Fragment(), BackPressInterceptor {
     private lateinit var directPlayAssPreference: Preference
     private lateinit var networkBufferPreference: Preference
     private lateinit var externalPlayerChoicePreference: Preference
+    private lateinit var externalPlayerVlcTrackingAccessPreference: Preference
     private lateinit var downloadLocationPreference: Preference
 
     init {
@@ -88,6 +90,11 @@ class SettingsFragment : Fragment(), BackPressInterceptor {
     override fun onDestroyView() {
         super.onDestroyView()
         requireMainActivity().setSupportActionBar(null)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateVlcTrackingAccessPreference()
     }
 
     @Suppress("LongMethod")
@@ -242,6 +249,14 @@ class SettingsFragment : Fragment(), BackPressInterceptor {
             titleRes = R.string.external_player_app
             enabled = appPreferences.videoPlayerType == VideoPlayerType.EXTERNAL_PLAYER
         }
+        externalPlayerVlcTrackingAccessPreference = pref(Constants.PREF_EXTERNAL_PLAYER_VLC_TRACKING_ACCESS) {
+            titleRes = R.string.external_player_vlc_tracking_access_title
+            enabled = packageManager.isPackageInstalled(ExternalPlayerPackage.VLC_PLAYER)
+            defaultOnClick {
+                startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))
+            }
+        }
+        updateVlcTrackingAccessPreference()
         val subtitleSettingsIntent = Intent(Settings.ACTION_CAPTIONING_SETTINGS)
         if (subtitleSettingsIntent.resolveActivity(requireContext().packageManager) != null) {
             pref(Constants.PREF_SUBTITLE_STYLE) {
@@ -289,6 +304,18 @@ class SettingsFragment : Fragment(), BackPressInterceptor {
                 false
             }
         }
+    }
+
+    private fun updateVlcTrackingAccessPreference() {
+        if (!::externalPlayerVlcTrackingAccessPreference.isInitialized) return
+        externalPlayerVlcTrackingAccessPreference.summaryRes = if (
+            VlcMediaSessionObserver.hasNotificationListenerAccess(requireContext())
+        ) {
+            R.string.external_player_vlc_tracking_access_granted
+        } else {
+            R.string.external_player_vlc_tracking_access_required
+        }
+        externalPlayerVlcTrackingAccessPreference.requestRebindAndHighlight()
     }
 
     companion object {

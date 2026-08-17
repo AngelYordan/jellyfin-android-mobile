@@ -55,6 +55,11 @@
     <string name="external_player_mpv_description">Un reproductor de video simple, pequeño, ligero y libre. Soporta una amplia variedad de formatos multimedia.</string>
     <string name="external_player_mpv">Reproductor MPV</string>
     <string name="external_player_app">Reproductor de video externo</string>
+    <string name="external_player_tracking_notification_title">Seguimiento de reproducción externa</string>
+    <string name="external_player_vlc_tracking_service_label">Seguimiento de reproducción de VLC</string>
+    <string name="external_player_vlc_tracking_access_title">Acceso al estado de reproducción de VLC</string>
+    <string name="external_player_vlc_tracking_access_required">Necesario para detectar con precisión las pausas y la posición de VLC. Toca para habilitar el acceso a notificaciones de Jellyfin.</string>
+    <string name="external_player_vlc_tracking_access_granted">Concedido. Jellyfin puede leer el estado de reproducción de VLC; el contenido de las notificaciones no se procesa.</string>
     <string name="music_notification_channel_description">Utilizado para el control de la reproducción de música</string>
     <string name="music_notification_channel">Reproductor de Música Jellyfin</string>
     <string name="media_service_car_item_no_title">Sin título</string>

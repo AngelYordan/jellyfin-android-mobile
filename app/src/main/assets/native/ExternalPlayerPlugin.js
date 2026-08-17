@@ -50,7 +50,8 @@ export class ExternalPlayerPlugin {
         this._isIntro = options.item && options.item.ProviderIds && options.item.ProviderIds.hasOwnProperty("prerolls.video");
         const playOptions = options.item.playOptions;
         playOptions.ids = options.item ? [options.item.Id] : [];
-        this._externalPlayer.initPlayer(JSON.stringify(playOptions));
+        const webDeviceId = window.NativeShell?.AppHost?.deviceId?.() || '';
+        this._externalPlayer.initPlayer(JSON.stringify(playOptions), webDeviceId);
     }
 
     setSubtitleStreamIndex(index) { }
@@ -100,6 +101,7 @@ export class ExternalPlayerPlugin {
 
         this.playbackManager._playNextAfterEnded = this._isIntro;
         this.events.trigger(this, 'stopped', [stopInfo]);
+        console.info('[ExternalPlayerTracking] stopped event dispatched; PlaybackStop delegated to playback manager');
         this._currentSrc = this._currentTime = null;
     }
 

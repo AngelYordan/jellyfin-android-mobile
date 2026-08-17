@@ -45,6 +45,7 @@ object Constants {
     const val NETWORK_BUFFER_LARGE = "large"
     const val NETWORK_BUFFER_EXTRA_LARGE = "extra_large"
     const val PREF_EXTERNAL_PLAYER_APP = "pref_external_player_app"
+    const val PREF_EXTERNAL_PLAYER_VLC_TRACKING_ACCESS = "pref_external_player_vlc_tracking_access"
     const val PREF_SUBTITLE_STYLE = "pref_subtitle_style"
     const val PREF_STORAGE_LOCATION = "pref_storage_location"
     const val PREF_MEDIA_SEGMENT_ACTIONS = "pref_media_segment_actions"
@@ -75,7 +76,9 @@ object Constants {
         PlaybackState.ACTION_SKIP_TO_PREVIOUS or
         PlaybackState.ACTION_SET_RATING
     const val MEDIA_PLAYER_NOTIFICATION_ID = 42
+    const val EXTERNAL_PLAYER_TRACKING_NOTIFICATION_ID = 43
     const val REMOTE_PLAYER_CONTENT_INTENT_REQUEST_CODE = 100
+    const val EXTERNAL_PLAYER_TRACKING_CONTENT_INTENT_REQUEST_CODE = 101
 
     // Music player intent actions
     const val ACTION_SHOW_PLAYER = "org.jellyfin.mobile.intent.action.SHOW_PLAYER"
